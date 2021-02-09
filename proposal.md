@@ -1,11 +1,14 @@
-# proposal
-Here is where I Describe what I'm going to build
+# Proposal
+The Main Idea of my Project is to Build a grid Game where a player or Certain players go through each levels with some Obstacles and proceed to the end of the game
 
 ## Needs To Have
-- first thing
-- second thing
-- third thing
+- A Grid
+- Icons for Players
+- Players (X, Y)
+- Sound Effects
+- Background or Terrain
 
 ## Nice To Have 
-- files
-- etc
+- Increase the number of obstacles each level
+- Creating custom and making own Icons
+- AI Intelligence
