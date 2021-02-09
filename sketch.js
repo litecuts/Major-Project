@@ -1,14 +1,16 @@
-// Name
-//Project
+// Major Assignment
+// Omair
+// 2/9/21
+//
+// Extra for Experts:
+// - describe what you did to take this project "above and beyond"
 
-//Extra for Experts:
 
-let theBouncingBalls = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
-  background("black");
+  background(220);
 }
