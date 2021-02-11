@@ -4,7 +4,6 @@ The Main Idea of my Project is to Build a grid Game where a player or Certain pl
 ## Needs To Have
 - A Grid
 - Icons for Players
-- Players (X, Y)
 - Sound Effects
 - Background or Terrain
 - Arrays
@@ -14,3 +13,4 @@ The Main Idea of my Project is to Build a grid Game where a player or Certain pl
 - Creating custom and making own Icons
 - AI Intelligence
 - Having a Nice and Decorative starting page 
+- Players (X, Y)
