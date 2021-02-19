@@ -2,7 +2,7 @@
 The Main Idea of my Project is to Build a grid Game where a player or Certain players go through each levels with some Obstacles and proceed to the end of the game
 
 ## Needs To Have
-- A Grid
+~~- A Grid~~
 - Icons for Players
 - Sound Effects
 - Background or Terrain
