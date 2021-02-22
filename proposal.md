@@ -12,5 +12,5 @@ The Main Idea of my Project is to Build a grid Game where a player or Certain pl
 - Increase the number of obstacles each level
 - Creating custom and making own Icons
 - AI Intelligence
-- Having a Nice and Decorative starting page 
+~~ Having a Nice and Decorative starting page~~
 - Players (X, Y)
