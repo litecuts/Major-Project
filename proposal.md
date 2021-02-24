@@ -3,8 +3,8 @@ The Main Idea of my Project is to Build a grid Game where a player or Certain pl
 
 ## Needs To Have
 ~~- A Grid~~
-~~Icons for Players~~
-~~Sound Effects~~
+~~-Icons for Players~~
+~~-Sound Effects~~
 - Background or Terrain
 - Arrays
 
