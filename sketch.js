@@ -17,10 +17,12 @@ let m = 1;
 let follow = 0.5;
 let fontRegular, fontItalic, fontBold;
 let screen = 0;
+let moveSound;
 
 function preload() {
   fontRegular = loadFont("assets/Italic.otf");
   wallImg = loadImage("assets/Grass.png");
+  moveSound = loadSound("assets/Steps.ogg");
 }
 
 
@@ -106,7 +108,7 @@ function displayGrid() {
         image(wallImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       }
       else if (grid[y][x] === 9) {
-        image(playerImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        image(grassImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       }
     }
   }
@@ -129,10 +131,7 @@ function createEmptyGrid(cols, rows) {
 
 function startScreen() {
   let r1 = map(mouseX, 0, width, 0, height);
-  let r2 = height - r1;
 
-  fill(0, 0, 255, r1);
-  rect(width / 2 + r1 / 2, height / 2, r1, r1);
   fill(255, 255, 255);
   textAlign(CENTER, TOP);
   textSize(50);
@@ -142,8 +141,6 @@ function startScreen() {
   
 
 
-  fill(255, 0, 0, r2);
-  rect(width / 2 - r2 / 2, height / 2, r2, r2);
 
   let targetX = mouseX;
   let dm = targetX - m;
@@ -154,5 +151,5 @@ function startScreen() {
   p += dp * follow;
 
   ellipse(m, p, 66, 66);
-  fill(0);
+  fill(255,255);
 }
