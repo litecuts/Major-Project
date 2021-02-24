@@ -5,8 +5,8 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-const ROWS = 3;
-const COLS = 3;
+const ROWS = 20;
+const COLS = 20;
 let grid, cellWidth, cellHeight;
 let playerX = 0;
 let playerY = 0;
@@ -23,6 +23,7 @@ function preload() {
   fontRegular = loadFont("assets/Italic.otf");
   wallImg = loadImage("assets/Grass.png");
   moveSound = loadSound("assets/Steps.ogg");
+  playerImg = loadImage("assets/playerPortal_Complete.gif");
 }
 
 
@@ -108,7 +109,7 @@ function displayGrid() {
         image(wallImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       }
       else if (grid[y][x] === 9) {
-        image(grassImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        image(playerImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       }
     }
   }
@@ -136,8 +137,9 @@ function startScreen() {
   textAlign(CENTER, TOP);
   textSize(50);
   textFont(fontRegular);
-  text("Choose a Colour", width / 2, height / 2 - 350);
   text("WELCOME!", width / 2, height / 2 - 400);
+  text("In This Game, your role is to reach the golden apple and finish each level", width / 2, height / 2 - 100);
+  text("Good Luck!", width / 2, height / 2 - 30);
   
 
 
