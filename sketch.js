@@ -16,14 +16,17 @@ let p = 1;
 let m = 1;
 let follow = 0.5;
 let fontRegular, fontItalic, fontBold;
+let bgmusic;
 
 function preload() {
   fontRegular = loadFont('assets/Italic.otf');
+  bgmusic = loadSound('assets/Soundtrack.ogg')
 }
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  bgmusic.loop();
   noStroke();
   rectMode(CENTER);
   grid = createEmptyGrid(COLS, ROWS);
@@ -109,7 +112,7 @@ function movePlayer(x, y, oldX, oldY, direction) {
     if (direction === "up") {
       playerY -= 1;
     }
-  }
+  } 
 }
 function displayGrid() {
   for (let y=0; y<ROWS; y++) {
