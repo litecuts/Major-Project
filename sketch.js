@@ -5,8 +5,8 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-const ROWS = 3;
-const COLS = 3;
+const ROWS = 20;
+const COLS = 20;
 let grid, cellWidth, cellHeight;
 let playerX = 0;
 let playerY = 0;
@@ -16,11 +16,20 @@ let p = 1;
 let m = 1;
 let follow = 0.5;
 let fontRegular, fontItalic, fontBold;
+HEAD
 let bgmusic;
 
 function preload() {
   fontRegular = loadFont('assets/Italic.otf');
   bgmusic = loadSound('assets/Soundtrack.ogg')
+let screen = 0;
+let moveSound;
+
+function preload() {
+  fontRegular = loadFont("assets/Italic.otf");
+  wallImg = loadImage("assets/Grass.png");
+  moveSound = loadSound("assets/Steps.ogg");
+  playerImg = loadImage("assets/playerPortal_Complete.gif");
 }
 
 
@@ -36,33 +45,13 @@ function setup() {
 }
 
 function draw() {
-  background(25, 125, 200);
+  background(0);
 
-  let r1 = map(mouseX, 0, width, 0, height);
-  let r2 = height - r1;
-
-  fill(0, 0, 255, r1);
-  rect(width / 2 + r1 / 2, height / 2, r1, r1);
-  fill(255, 255, 255);
-  textAlign(CENTER, TOP);
-  textSize(50)
-  textFont(fontRegular)
-  text('WELCOME!', width / 2, height / 2 - 400)
-
-
-  fill(255, 0, 0, r2);
-  rect(width / 2 - r2 / 2, height / 2, r2, r2);
-
-  let targetX = mouseX;
-  let dm = targetX - m;
-  m += dm * follow;
-
-  let targetY = mouseY;
-  let dp = targetY - p;
-  p += dp * follow;
-
-  ellipse(m, p, 66, 66);
-  fill(0);
+  if(screen === 0) {
+    startScreen();
+  } if (screen === 1){
+    displayGrid();
+  }
 }
 
 function mousePressed() {
@@ -74,6 +63,9 @@ function mousePressed() {
   }
   else if (grid[y][x] === 1) { //if wall
     grid[y][x] = 0;       //make it empty
+  }
+  if (screen === 0){
+    screen = 1;
   }
 }
 
@@ -117,22 +109,22 @@ function movePlayer(x, y, oldX, oldY, direction) {
 function displayGrid() {
   for (let y=0; y<ROWS; y++) {
     for (let x=0; x<COLS; x++) {
+      // eslint-disable-next-line no-empty
       if (grid[y][x] === 0) {
-        // fill("white");
-        image(grassImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       }
       else if (grid[y][x] === 1) {
-        // fill("black");
         image(wallImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       }
       else if (grid[y][x] === 9) {
-        // fill("red");
         image(playerImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       }
-      // rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
     }
   }
 }
+
+  
+
+
 
 function createEmptyGrid(cols, rows) {
   let empty = [];
@@ -143,4 +135,30 @@ function createEmptyGrid(cols, rows) {
     }
   }
   return empty;
+}
+
+function startScreen() {
+  let r1 = map(mouseX, 0, width, 0, height);
+
+  fill(255, 255, 255);
+  textAlign(CENTER, TOP);
+  textSize(50);
+  textFont(fontRegular);
+  text("WELCOME!", width / 2, height / 2 - 400);
+  text("In This Game, your role is to reach the golden apple and finish each level", width / 2, height / 2 - 100);
+  text("Good Luck!", width / 2, height / 2 - 30);
+  
+
+
+
+  let targetX = mouseX;
+  let dm = targetX - m;
+  m += dm * follow;
+
+  let targetY = mouseY;
+  let dp = targetY - p;
+  p += dp * follow;
+
+  ellipse(m, p, 66, 66);
+  fill(255,255);
 }
