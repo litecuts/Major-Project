@@ -19,6 +19,8 @@ let fontRegular, fontItalic, fontBold;
 let screen = 0;
 let moveSound;
 let bgmusic;
+let c1,c2;
+let n;
 
 function preload() {
   fontRegular = loadFont("assets/Italic.otf");
@@ -102,26 +104,36 @@ function movePlayer(x, y, oldX, oldY, direction) {
   } 
 }
 function displayGrid() {
-  for (let y=0; y<ROWS; y++) {
-    for (let x=0; x<COLS; x++) {
+  c1 = color(63, 191, 191);
+  c2 = color(255);
+  for(let p=0; p<height; p++) {
+    n = map(p,0,height,0,1);
+    let newc = lerpColor(c1,c2,n);
+    stroke(newc);
+    line(0,p,width, p);
+    for (let y=0; y<ROWS; y++) {
+      for (let x=0; x<COLS; x++) {
       // eslint-disable-next-line no-empty
-      if (grid[y][x] === 0) {
-      }
-      else if (grid[y][x] === 1) {
-        image(wallImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
-      }
-      else if (grid[y][x] === 9) {
-        image(playerImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
-      }
-      else if (grid[y][x] === 19) {
-        image(playerImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        if (grid[y][x] === 0) {
+        }
+        if (playerX === 19) {
+          image(endImg, x*cellWidth, cellWidth, cellHeight);
+        } 
+        else if (grid[y][x] === 1) {
+          image(wallImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        }
+        else if (grid[y][x] === 9) {
+          image(playerImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        }
+        else if (grid[y][x] === 19) {
+          image(playerImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        }
       }
     }
   }
 }
 
   
-
 
 
 function createEmptyGrid(cols, rows) {
@@ -145,9 +157,6 @@ function startScreen() {
   text("In This Game, your role is to reach the golden apple and finish each level", width / 2, height / 2 - 100);
   text("Good Luck!", width / 2, height / 2 - 30);
   
-
-
-
   let targetX = mouseX;
   let dm = targetX - m;
   m += dm * follow;
