@@ -11,25 +11,23 @@ let grid, cellWidth, cellHeight;
 let playerX = 0;
 let playerY = 0;
 let someMaze;
-let playerImg, wallImg, grassImg;
+let playerImg, wallImg, endImg;
 let p = 1;
 let m = 1;
 let follow = 0.5;
 let fontRegular, fontItalic, fontBold;
-HEAD
+let screen = 0;
+let moveSound;
 let bgmusic;
 
 function preload() {
-  fontRegular = loadFont('assets/Italic.otf');
-  bgmusic = loadSound('assets/Soundtrack.ogg')
-let screen = 0;
-let moveSound;
-
-function preload() {
+  fontRegular = loadFont("assets/Italic.otf");
+  bgmusic = loadSound("assets/Soundtrack.ogg");
   fontRegular = loadFont("assets/Italic.otf");
   wallImg = loadImage("assets/Grass.png");
   moveSound = loadSound("assets/Steps.ogg");
-  playerImg = loadImage("assets/playerPortal_Complete.gif");
+  playerImg = loadImage("assets/player1.gif");
+  endImg = loadImage("assets/playerPortal_Complete.gif");
 }
 
 
@@ -82,9 +80,6 @@ function keyPressed() {
   if (key === "w") {
     movePlayer(playerX, playerY-1, playerX, playerY, "up");
   }
-  if (key === "m") {
-    grid = someMaze;
-  }
 }
 
 function movePlayer(x, y, oldX, oldY, direction) {
@@ -118,6 +113,9 @@ function displayGrid() {
       else if (grid[y][x] === 9) {
         image(playerImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       }
+      else if (grid[y][x] === 19) {
+        image(playerImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+      }
     }
   }
 }
@@ -138,7 +136,6 @@ function createEmptyGrid(cols, rows) {
 }
 
 function startScreen() {
-  let r1 = map(mouseX, 0, width, 0, height);
 
   fill(255, 255, 255);
   textAlign(CENTER, TOP);
