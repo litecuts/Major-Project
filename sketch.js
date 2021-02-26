@@ -5,6 +5,7 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
+let stars = [];
 const ROWS = 20;
 const COLS = 20;
 let grid, cellWidth, cellHeight;
@@ -42,6 +43,23 @@ function setup() {
   cellWidth = width / COLS;
   cellHeight = height / ROWS;
   grid[playerY][playerX] = 9;
+  class Star {
+    constructor() {
+      this.x = random(width);
+      this.y = random(height);
+      this.size = random(0.25, 3);
+      this.t = random(TAU);
+    }
+    
+    draw() {
+      this.t += 0.1;
+      let scale = this.size + sin(this.t) * 2;
+      noStroke();
+      ellipse(this.x, this.y, scale, scale);
+    }
+    for (let i = 0; i < 1000; i++) {
+      stars[i] = new Star();
+    }
 }
 
 function draw() {
@@ -51,6 +69,9 @@ function draw() {
     startScreen();
   } if (screen === 1){
     displayGrid();
+  }
+  for (let i = 0; i < stars.length; i++) {
+    stars[i].draw();
   }
 }
 
