@@ -5,8 +5,7 @@ The Main Idea of my Project is to Build a grid Game where a player or Certain pl
 ~~- A Grid~~
 ~~- Icons for Players~~
 ~~- Sound Effects~~
-- Background or Terrain
-- Arrays
+~~- Background or Terrain~~
 
 ## Nice To Have 
 - Increase the number of obstacles each level

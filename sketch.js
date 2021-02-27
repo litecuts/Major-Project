@@ -5,13 +5,14 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
+let stars = [];
 const ROWS = 20;
 const COLS = 20;
 let grid, cellWidth, cellHeight;
 let playerX = 0;
 let playerY = 0;
 let someMaze;
-let playerImg, wallImg, grassImg;
+let playerImg, wallImg, endImg;
 let p = 1;
 let m = 1;
 let follow = 0.5;
@@ -19,14 +20,20 @@ let fontRegular, fontItalic, fontBold;
 // let bgmusic;
 let screen = 0;
 let moveSound;
+let bgmusic;
+let c1,c2;
+let n;
 
 function preload() {
   fontRegular = loadFont('assets/Italic.otf');
   // bgmusic = loadSound('assets/Soundtrack.ogg')
   fontRegular = loadFont("assets/Italic.otf");
+  bgmusic = loadSound("assets/Soundtrack.ogg");
+  fontRegular = loadFont("assets/Italic.otf");
   wallImg = loadImage("assets/Grass.png");
   moveSound = loadSound("assets/Steps.ogg");
-  playerImg = loadImage("assets/playerPortal_Complete.gif");
+  playerImg = loadImage("assets/player1.gif");
+  endImg = loadImage("assets/playerPortal_Complete.gif");
 }
 
 
@@ -39,6 +46,23 @@ function setup() {
   cellWidth = width / COLS;
   cellHeight = height / ROWS;
   grid[playerY][playerX] = 9;
+  class Star {
+    constructor() {
+      this.x = random(width);
+      this.y = random(height);
+      this.size = random(0.25, 3);
+      this.t = random(TAU);
+    }
+    
+    draw() {
+      this.t += 0.1;
+      let scale = this.size + sin(this.t) * 2;
+      noStroke();
+      ellipse(this.x, this.y, scale, scale);
+    }
+    for (let i = 0; i < 1000; i++) {
+      stars[i] = new Star();
+    }
 }
 
 function draw() {
@@ -48,6 +72,9 @@ function draw() {
     startScreen();
   } if (screen === 1){
     displayGrid();
+  }
+  for (let i = 0; i < stars.length; i++) {
+    stars[i].draw();
   }
 }
 
@@ -79,9 +106,6 @@ function keyPressed() {
   if (key === "w") {
     movePlayer(playerX, playerY-1, playerX, playerY, "up");
   }
-  if (key === "m") {
-    grid = someMaze;
-  }
 }
 
 function movePlayer(x, y, oldX, oldY, direction) {
@@ -104,23 +128,36 @@ function movePlayer(x, y, oldX, oldY, direction) {
   } 
 }
 function displayGrid() {
-  for (let y=0; y<ROWS; y++) {
-    for (let x=0; x<COLS; x++) {
+  c1 = color(63, 191, 191);
+  c2 = color(255);
+  for(let p=0; p<height; p++) {
+    n = map(p,0,height,0,1);
+    let newc = lerpColor(c1,c2,n);
+    stroke(newc);
+    line(0,p,width, p);
+    for (let y=0; y<ROWS; y++) {
+      for (let x=0; x<COLS; x++) {
       // eslint-disable-next-line no-empty
-      if (grid[y][x] === 0) {
-      }
-      else if (grid[y][x] === 1) {
-        image(wallImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
-      }
-      else if (grid[y][x] === 9) {
-        image(playerImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        if (grid[y][x] === 0) {
+        }
+        if (playerX === 19) {
+          image(endImg, x*cellWidth, cellWidth, cellHeight);
+        } 
+        else if (grid[y][x] === 1) {
+          image(wallImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        }
+        else if (grid[y][x] === 9) {
+          image(playerImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        }
+        else if (grid[y][x] === 19) {
+          image(playerImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        }
       }
     }
   }
 }
 
   
-
 
 
 function createEmptyGrid(cols, rows) {
@@ -135,7 +172,6 @@ function createEmptyGrid(cols, rows) {
 }
 
 function startScreen() {
-  let r1 = map(mouseX, 0, width, 0, height);
 
   fill(255, 255, 255);
   textAlign(CENTER, TOP);
@@ -145,9 +181,6 @@ function startScreen() {
   text("In This Game, your role is to reach the golden apple and finish each level", width / 2, height / 2 - 100);
   text("Good Luck!", width / 2, height / 2 - 30);
   
-
-
-
   let targetX = mouseX;
   let dm = targetX - m;
   m += dm * follow;
