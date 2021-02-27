@@ -16,16 +16,13 @@ let p = 1;
 let m = 1;
 let follow = 0.5;
 let fontRegular, fontItalic, fontBold;
-HEAD
-let bgmusic;
-
-function preload() {
-  fontRegular = loadFont('assets/Italic.otf');
-  bgmusic = loadSound('assets/Soundtrack.ogg')
+// let bgmusic;
 let screen = 0;
 let moveSound;
 
 function preload() {
+  fontRegular = loadFont('assets/Italic.otf');
+  // bgmusic = loadSound('assets/Soundtrack.ogg')
   fontRegular = loadFont("assets/Italic.otf");
   wallImg = loadImage("assets/Grass.png");
   moveSound = loadSound("assets/Steps.ogg");
@@ -35,7 +32,7 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  bgmusic.loop();
+  // bgmusic.loop();
   noStroke();
   rectMode(CENTER);
   grid = createEmptyGrid(COLS, ROWS);
