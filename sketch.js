@@ -1,8 +1,7 @@
 // Major Assignment
 // Omair
 // 2/9/21
-//
-
+//Bunch of Variables named and Included
 const ROWS = 20;
 const COLS = 20;
 let grid, cellWidth, cellHeight;
@@ -30,7 +29,7 @@ let initSpeed = 1;
 let anotherone;
 
 
-
+// Added Fonts, Images and Music
 function preload() {
   fontRegular = loadFont("assets/Italic.otf");
   fontRegular = loadFont("assets/Italic.otf");
@@ -46,7 +45,6 @@ function preload() {
   anotherone = loadJSON("assets/untitled2.json");
 }
 
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noCursor();
@@ -60,6 +58,7 @@ function setup() {
   createBouncerArray(initAmt, initSpeed);
 
 }
+// Function in order so that the Bubbles multiply after each level and spawn at random locations
 function createBouncerArray(level, multiplier) {
   maxBouncers = level;
   for (let i = 0; i < maxBouncers; i++) {
@@ -83,30 +82,20 @@ function draw() {
   } if (screen === 1){
     displayGrid();
   }
-  let galaxy = { 
-    locationX : random(width),
-    locationY : random(height),
-    size : random(1,6)
-  };
-  ellipse(mouseX ,mouseY, galaxy.size, galaxy.size);
-  ellipse(galaxy.locationX ,galaxy.locationY, galaxy.size, galaxy.size);
 
   let i = 0;
-  
-  
+
   for (let bounce of bouncers) {
     bounce.show();
     bounce.move();
     bounce.bounce();
 
-    if (mouseIsPressed && dist(mouseX, mouseY, bounce.x, bounce.y) < bounce.radius) {
+    if (mouseIsPressed && dist(mouseX, mouseY, bounce.x, bounce.y) < bounce.radius) { // The addition of the score when the mouse clicks a ubble 
       bouncers.splice(i, 1);
       steps++;
     }
-	
     i++;
   }
-
   textSize(40);
   fill(255);
   if (steps === maxBouncers) {
@@ -121,8 +110,16 @@ function draw() {
       steps = 0;
     }
   }
+  let galaxy = { // For the Background full of twinkling stars
+    locationX : random(width),
+    locationY : random(height),
+    size : random(1,6)
+  };
+  ellipse(mouseX ,mouseY, galaxy.size, galaxy.size);
+  ellipse(galaxy.locationX ,galaxy.locationY, galaxy.size, galaxy.size);
 }
 
+// A constructor for showing, Moving and Bouncing of the Balls
 class Bouncer {
   constructor(tempX, tempY, tempSpeedX, tempSpeedY, tempRadius) {
     this.x = tempX;
@@ -203,6 +200,7 @@ function movePlayer(x, y, oldX, oldY, direction) {
     }
   } 
 }
+// To Display the Grid
 function displayGrid() {
   text("Score:" + steps, 800, 1200/width + 700);
   image(text1, 0, 1100/width + 600);
@@ -240,6 +238,7 @@ function createEmptyGrid(cols, rows) {
   return empty;
 }
 
+// The Texts that Fit In The Start Screen
 function startScreen() {
 
   fill(255, 255, 255);
