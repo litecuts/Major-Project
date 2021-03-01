@@ -156,10 +156,6 @@ class Bouncer {
 function mousePressed() {
   let x = Math.floor(mouseX / cellWidth);
   let y = Math.floor(mouseY / cellHeight);
-
-  if (grid[y][x] === 1) { //if wall
-    grid[y][x] = 0;       //make it empty
-  }
 }
 
 function keyPressed() {
