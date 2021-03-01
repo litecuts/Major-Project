@@ -13,7 +13,7 @@ let p = 1;
 let m = 1;
 let follow = 0.5;
 let fontRegular, fontItalic, fontBold;
-// let bgmusic;
+let bgmusic;
 let screen = 0;
 let moveSound;
 let c1,c2;
@@ -33,7 +33,7 @@ let anotherone;
 function preload() {
   fontRegular = loadFont("assets/Italic.otf");
   fontRegular = loadFont("assets/Italic.otf");
-  // bgmusic = loadSound("assets/Soundtrack.ogg");
+  bgmusic = loadSound("assets/Soundtrack.ogg");
   fontRegular = loadFont("assets/Italic.otf");
   wallImg = loadImage("assets/Torch_Gif.gif");
   moveSound = loadSound("assets/Steps.ogg");
@@ -48,7 +48,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noCursor();
-  // bgmusic.loop();
+  bgmusic.loop();
   noStroke();
   rectMode(CENTER);
   grid = createEmptyGrid(COLS, ROWS);
