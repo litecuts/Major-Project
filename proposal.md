@@ -8,8 +8,8 @@ The Main Idea of my Project is to Build a grid Game where a player or Certain pl
 ~~- Background or Terrain~~
 
 ## Nice To Have 
-- Increase the number of obstacles each level
-- Creating custom and making own Icons
+~~- Increase the number of obstacles each level~~
+~~- Creating custom and making own Icons~~
 - AI Intelligence
 ~~Having a Nice and Decorative starting page~~
 - Players (X, Y)
